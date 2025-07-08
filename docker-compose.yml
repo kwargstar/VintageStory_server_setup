@@ -1,0 +1,17 @@
+services:
+  server:
+    container_name: vs_server
+    image: vintage_story/server:${VS_VERSION}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        RELEASE_TYPE: "${VS_RELEASE_TYPE}"
+        VERSION: "${VS_VERSION}"
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 42420:42420/tcp
+    volumes:
+      - ./data:/server/data
